@@ -1,5 +1,6 @@
 // FranchisePage.jsx
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./FranchisePage.css";
 
 import main1 from "./image/main1.png";
@@ -17,13 +18,14 @@ export default function FranchisePage() {
   const [currentImage, setCurrentImage] = useState(0);
   const [activeSection, setActiveSection] = useState("top");
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [images.length]);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,16 +51,16 @@ export default function FranchisePage() {
   const scrollTo = (id) => {
     const target = document.getElementById(id);
     if (!target) return;
-
+  
     const start = window.scrollY || window.pageYOffset;
     const end = target.getBoundingClientRect().top + start;
     const distance = end - start;
-    const duration = 800;
+    const duration = 800; // 원하는 부드러움 정도 (ms)
     let startTime = null;
-
+  
     const easeInOut = (t) =>
       t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
+  
     const animateScroll = (timestamp) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
@@ -66,7 +68,7 @@ export default function FranchisePage() {
       window.scrollTo(0, start + distance * eased);
       if (progress < 1) requestAnimationFrame(animateScroll);
     };
-
+  
     requestAnimationFrame(animateScroll);
   };
 
@@ -110,28 +112,34 @@ export default function FranchisePage() {
 
       <section id="board" className="franchise-section fade-in">
         <div className="inner">
-          <h2>게시판</h2>
-          {[
-            {
-              label: "이벤트",
-              date: "2024.04.01",
-              title: "창업시 인테리어 비용 10% 할인 이벤트",
-            },
-            {
-              label: "이벤트",
-              date: "2024.04.10",
-              title: "지금 바로 창업 상담시 추가 혜택 제공",
-            },
-          ].map((post, idx) => (
-            <div className="franchise-board-card" key={idx}>
-              <div className="board-icon">📢</div>
-              <div className="board-meta">
-                <span className="board-label">{post.label}</span>
-                <span className="board-date">{post.date}</span>
+          <h2>📢 게시판</h2>
+          <div className="franchise-board-list">
+            {[
+              {
+                label: "이벤트",
+                date: "2024.04.01",
+                title: "창업시 인테리어 비용 10% 할인 이벤트",
+              },
+              {
+                label: "이벤트",
+                date: "2024.04.10",
+                title: "지금 바로 창업 상담시 추가 혜택 제공",
+              },
+            ].map((post, idx) => (
+              <div className="franchise-board-card" key={idx}>
+                <div className="board-meta">
+                  <span className="board-label">{post.label}</span>
+                  <span className="board-date">{post.date}</span>
+                </div>
+                <div className="board-title">{post.title}</div>
               </div>
-              <div className="board-title">{post.title}</div>
-            </div>
-          ))}
+            ))}
+          </div>
+          <div className="board-more">
+            <button className="premium-btn" onClick={() => navigate("/board")}>
+              전체 게시글 보기
+            </button>
+          </div>
         </div>
       </section>
 
@@ -160,8 +168,7 @@ export default function FranchisePage() {
             <input placeholder="이메일" />
             <div className="franchise-radio-group full-row">
               <label>
-                <input type="radio" name="type" defaultChecked /> 현재 매장
-                운영중
+                <input type="radio" name="type" defaultChecked /> 현재 매장 운영중
               </label>
               <label>
                 <input type="radio" name="type" /> 신규 창업
@@ -204,8 +211,7 @@ export default function FranchisePage() {
               </p>
               <p>최고의 고기질을 자부하다</p>
               <p>
-                남녀노소 누구나 찾을 수 있는 소고기집이 되겠다는 의미로
-                소소한우입니다
+                남녀노소 누구나 찾을 수 있는 소고기집이 되겠다는 의미로 소소한우입니다
               </p>
               <p>
                 영업시간
