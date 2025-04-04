@@ -20,10 +20,6 @@
   margin-bottom: 0.5rem;
 }
 
-.review-page-title::before {
-  content: "📝 ";
-}
-
 .review-subtitle {
   text-align: center;
   color: #aaa;
