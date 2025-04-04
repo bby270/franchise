@@ -164,6 +164,16 @@ export default function BoardPage() {
           </button>
         </div>
 
+        {/* 🏠 홈으로 돌아가기 버튼 추가 */}
+        <div className="boardpage-home-link">
+          <button
+            className="premium-btn"
+            onClick={() => (window.location.href = "/")}
+          >
+            홈으로 돌아가기
+          </button>
+        </div>
+
         {/* ⓒ 푸터 */}
         <footer className="boardpage-footer">
           ⓒ 2025 소소한우게시판. All rights reserved.

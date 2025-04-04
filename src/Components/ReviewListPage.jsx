@@ -79,7 +79,15 @@ export default function ReviewListPage() {
           </div>
         )}
       </div>
-
+      {/* 🏠 홈으로 돌아가기 버튼 */}
+      <div className="review-home-link">
+        <button
+          className="premium-btn"
+          onClick={() => (window.location.href = "/")}
+        >
+          홈으로 돌아가기
+        </button>
+      </div>
       <footer className="review-footer-copyright">
         ⓒ 2025 소소한우게시판. All rights reserved.
       </footer>
