@@ -3,14 +3,14 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./FranchisePage.css";
 
-import main1 from "./image/main1.png";
-import main2 from "./image/main2.png";
-import main3 from "./image/main3.png";
-import logo from "./image/간판이미지 사진.png";
-import storeImg from "./image/매장소개 사진.png";
-import menu1 from "./image/꽃등심.png";
-import menu2 from "./image/살치살.png";
-import menu3 from "./image/꽃살.png";
+import main1 from "../assets/image/main1.png";
+import main2 from "../assets/image/main2.png";
+import main3 from "../assets/image/main3.png";
+import logo from "../assets/image/간판이미지 사진.png";
+import storeImg from "../assets/image/매장소개 사진.png";
+import menu1 from "../assets/image/꽃등심.png";
+import menu2 from "../assets/image/살치살.png";
+import menu3 from "../assets/image/꽃살.png";
 
 const images = [main1, main2, main3];
 
@@ -51,16 +51,16 @@ export default function FranchisePage() {
   const scrollTo = (id) => {
     const target = document.getElementById(id);
     if (!target) return;
-  
+
     const start = window.scrollY || window.pageYOffset;
     const end = target.getBoundingClientRect().top + start;
     const distance = end - start;
     const duration = 800; // 원하는 부드러움 정도 (ms)
     let startTime = null;
-  
+
     const easeInOut = (t) =>
       t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  
+
     const animateScroll = (timestamp) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
@@ -68,7 +68,7 @@ export default function FranchisePage() {
       window.scrollTo(0, start + distance * eased);
       if (progress < 1) requestAnimationFrame(animateScroll);
     };
-  
+
     requestAnimationFrame(animateScroll);
   };
 
@@ -125,6 +125,29 @@ export default function FranchisePage() {
                 date: "2024.04.10",
                 title: "지금 바로 창업 상담시 추가 혜택 제공",
               },
+              {
+                label: "이벤트",
+                date: "2024.05.10",
+                title: "인테리어 비용 10% 할인 이벤트 행사",
+              },
+              {
+                label: "이벤트",
+                date: "2024.06.10",
+                title:
+                  "상담만 해도 사은품 증정 해드리고 있습니다 많은 문의 주세요",
+              },
+              {
+                label: "이벤트",
+                date: "2024.07.10",
+                title:
+                  "예비 창업주 대표님 저의 소소한우 는 대표님한테 마진없이 다 오픈해드립니다.",
+              },
+              {
+                label: "이벤트",
+                date: "2024.08.10",
+                title:
+                  "가게 창업시 평수는 예비 창업대표님이 원하시는 평수대로 모두 맞춰드리겠습니다.",
+              },
             ].map((post, idx) => (
               <div className="franchise-board-card" key={idx}>
                 <div className="board-meta">
@@ -147,7 +170,7 @@ export default function FranchisePage() {
         <div className="inner">
           <h2>고객 후기</h2>
           <div className="franchise-reviews">
-            {Array(3)
+            {Array(5)
               .fill(0)
               .map((_, i) => (
                 <div className="franchise-review premium-card" key={i}>
@@ -165,10 +188,11 @@ export default function FranchisePage() {
           <form className="franchise-form premium-form contact-grid">
             <input placeholder="성함" />
             <input placeholder="연락처" />
-            <input placeholder="이메일" />
+            <input placeholder="이메일" className="full-row" />
             <div className="franchise-radio-group full-row">
               <label>
-                <input type="radio" name="type" defaultChecked /> 현재 매장 운영중
+                <input type="radio" name="type" defaultChecked /> 현재 매장
+                운영중
               </label>
               <label>
                 <input type="radio" name="type" /> 신규 창업
@@ -177,7 +201,7 @@ export default function FranchisePage() {
             <input placeholder="창업 희망 지역" />
             <input placeholder="창업 희망 평수" />
             <textarea className="full-row" placeholder="문의 내용" />
-            <div className="form-button">
+            <div className="form-button full-row">
               <button
                 type="button"
                 className="franchise-submit premium-btn"
@@ -211,7 +235,8 @@ export default function FranchisePage() {
               </p>
               <p>최고의 고기질을 자부하다</p>
               <p>
-                남녀노소 누구나 찾을 수 있는 소고기집이 되겠다는 의미로 소소한우입니다
+                남녀노소 누구나 찾을 수 있는 소고기집이 되겠다는 의미로
+                소소한우입니다
               </p>
               <p>
                 영업시간
@@ -255,9 +280,6 @@ export default function FranchisePage() {
         <p style={{ marginTop: "1rem", fontSize: "0.75rem", color: "#666" }}>
           © 2025 소소한우. All rights reserved.
         </p>
-        <div className="footer-logo-fade">
-          <img src={logo} alt="흐릿한 로고" />
-        </div>
       </footer>
     </div>
   );

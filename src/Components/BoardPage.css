@@ -1,0 +1,310 @@
+.boardpage-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 4rem 35rem;
+  background-color: #111;
+  min-height: 100vh;
+}
+
+/* 👉 새로 추가된 중앙 정렬용 래퍼 */
+.boardpage-inner {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.boardpage {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.boardpage-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.boardpage-title {
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+/* 버튼 */
+.boardpage-btn {
+  background-color: #b89054;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.boardpage-btn:hover {
+  background-color: #a0763b;
+}
+
+/* 폼 */
+.boardpage-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+.boardpage-form input,
+.boardpage-form textarea {
+  padding: 0.75rem;
+  border: 1px solid #555;
+  background-color: #222;
+  color: white;
+  border-radius: 6px;
+}
+.boardpage-form button {
+  background-color: #b89054;
+  color: white;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* 리스트 */
+.boardpage-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* 아이템 */
+.boardpage-item {
+  background-color: #1a1a1a;
+  padding: 1.5rem;
+  width: 300px;
+  border-left: 4px solid #b89054;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: pointer;
+}
+.boardpage-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(184, 144, 84, 0.5);
+}
+.boardpage-item h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: #f5f5f5;
+}
+.boardpage-item p {
+  margin: 0;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+.boardpage-content {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+.boardpage-icon {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  font-size: 1.2rem;
+  color: #b89054;
+}
+/* 🔍 검색 입력창 */
+.boardpage-search {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background-color: #1a1a1a;
+  color: #fff;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 📅 공지 박스 */
+.boardpage-footer-info {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* 📢 CTA 영역 */
+.boardpage-cta {
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.boardpage-cta p {
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+/* ⓒ 푸터 텍스트 */
+.boardpage-footer {
+  margin-top: 3rem;
+  padding: 2rem 0;
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* 🔍 검색 입력창 */
+.boardpage-search {
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid #b89054;
+  background-color: #1a1a1a;
+  color: #f5f5f5;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.boardpage-search::placeholder {
+  color: #aaa;
+  opacity: 1;
+}
+
+.boardpage-search:focus {
+  outline: none;
+  border-color: #d2a76d;
+  box-shadow: 0 0 6px rgba(184, 144, 84, 0.6);
+}
+
+
+/* 📅 공지 박스 */
+.boardpage-footer-info {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* 📢 CTA 영역 */
+.boardpage-cta {
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.boardpage-cta p {
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+/* ⓒ 푸터 텍스트 */
+.boardpage-footer {
+  margin-top: 3rem;
+  padding: 2rem 0;
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background-color: #1a1a1a;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  color: #fff;
+  max-width: 360px;
+  width: 90%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.modal-box h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.modal-box p {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.modal-box button {
+  background-color: #b89054;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* 반응형 */
+@media screen and (max-width: 768px) {
+  .boardpage {
+    padding: 2rem 1rem;
+  }
+  .boardpage-btn {
+    width: 100%;
+  }
+  .boardpage-list {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media screen and (max-width: 768px) {
+  .boardpage-search {
+    font-size: 0.95rem;
+  }
+
+  .boardpage-cta p {
+    font-size: 1rem;
+  }
+}

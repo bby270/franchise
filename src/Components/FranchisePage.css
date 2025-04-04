@@ -12,7 +12,8 @@ html, body {
 
 .franchise-wrapper {
   width: 100%;
-  line-height: 1.6;
+  overflow-x: hidden;
+  background: linear-gradient(to bottom, #1a1a1a, #000);
 }
 
 .premium-bg {
@@ -25,9 +26,11 @@ html, body {
   align-items: center;
   justify-content: space-between;
   padding: 1rem 4rem;
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 10;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   backdrop-filter: blur(8px);
   background-color: rgba(0, 0, 0, 0.6);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -71,15 +74,12 @@ html, body {
   background-position: center;
   position: relative;
   animation: fadeHero 1.5s ease-in-out;
+  margin-top: 70px;
 }
 
 @keyframes fadeHero {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .franchise-hero-overlay {
@@ -237,6 +237,58 @@ html, body {
   box-shadow: 0 0 10px #b89054;
 }
 
+/* 폼 정렬 개선 */
+/* 폼 레이아웃 */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* 두 칸 차지할 요소 */
+.contact-grid .full-row {
+  grid-column: 1 / 3;
+}
+
+.franchise-form input,
+.franchise-form textarea,
+.franchise-form select {
+  padding: 0.75rem;
+  border: 1px solid #444;
+  background-color: #111;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 라디오 그룹을 한 줄에 정렬 */
+.franchise-radio-group {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2rem;
+  grid-column: 1 / 3;
+  padding: 0.5rem 25rem;
+  text-align: center;
+}
+
+/* textarea 전용 */
+.contact-grid textarea.full-row {
+  height: 120px;
+  resize: none;
+}
+
+/* 버튼 오른쪽 정렬 */
+.form-button {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+
 /* 매장 소개 */
 .franchise-intro {
   display: flex;
@@ -335,32 +387,8 @@ html, body {
   transform: translateY(0);
 }
 
-/* 폼 그리드 */
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.contact-grid .full-row {
-  grid-column: 1 / -1;
-}
-
-.contact-grid textarea.full-row {
-  height: 120px;
-  resize: none;
-}
-
-.form-button {
-  grid-column: 2;
-  text-align: right;
-  margin-top: 0.5rem;
-}
-
 /* 내부 여백 */
 .inner {
-  padding: 0 2rem;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
@@ -371,7 +399,8 @@ html, body {
   padding: 2rem;
   box-sizing: border-box;
 }
-/* 모달 전체 배경 */
+
+/* 모달 */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -385,7 +414,6 @@ html, body {
   z-index: 9999;
 }
 
-/* 모달 창 */
 .modal-content {
   background: #1a1a1a;
   color: #fff;
@@ -396,6 +424,7 @@ html, body {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   text-align: center;
 }
+
 .modal-content button {
   margin-top: 1rem;
   padding: 0.6rem 1.2rem;
@@ -413,9 +442,51 @@ html, body {
   box-shadow: 0 0 10px #b89054;
 }
 
+.page-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+
 .franchise-wrapper {
   width: 100vw;
   overflow-x: hidden;
   background-color: transparent; /* body 배경이 보이게 */
+  margin: 0 auto;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.full-row {
+  grid-column: 1 / -1;
+}
+
+input.full-row {
+  grid-column: 1 / -1;
+}
+
+.form-button {
+  text-align: center; /* ✅ 가운데 정렬 */
+  margin-top: 1.5rem;
+}
+
+textarea.full-row {
+  height: 120px;
+  resize: none;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background-color: #111;
+  color: #fff;
+  box-sizing: border-box;
+  width: 100%;
 }
 
