@@ -91,15 +91,17 @@ export default function BoardPage() {
             {showForm ? "취소" : "＋ 게시글 추가"}
           </button>
         </div>
-
         {!showForm && (
-          <input
-            type="text"
-            className="boardpage-search"
-            placeholder="게시글 검색..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+          <div className="boardpage-search-wrap">
+            <input
+              type="text"
+              className="boardpage-search-input"
+              placeholder="게시글 검색..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button className="boardpage-search-btn">검색</button>
+          </div>
         )}
 
         {showForm && (
@@ -151,7 +153,7 @@ export default function BoardPage() {
 
         {/* 📅 공지 */}
         <div className="boardpage-footer-info">
-          📅 전체공지 : 매월 5일은 본사에서 교육진행 됩니다. 감사합니다. 
+          📅 전체공지 : 매월 5일은 본사에서 교육진행 됩니다. 감사합니다.
         </div>
 
         {/* 📢 CTA 버튼 */}

@@ -170,7 +170,7 @@ export default function FranchisePage() {
         <div className="inner">
           <h2>고객 후기</h2>
           <div className="franchise-reviews">
-            {Array(5)
+            {Array(4)
               .fill(0)
               .map((_, i) => (
                 <div className="franchise-review premium-card" key={i}>
