@@ -169,6 +169,7 @@ export default function FranchisePage() {
       <section id="reviews" className="franchise-section fade-in">
         <div className="inner">
           <h2>고객 후기</h2>
+
           <div className="franchise-reviews">
             {Array(4)
               .fill(0)
@@ -178,6 +179,16 @@ export default function FranchisePage() {
                   <p className="franchise-stars">★★★★★</p>
                 </div>
               ))}
+          </div>
+
+          {/* ⬇ 후기 더 보기 버튼 */}
+          <div className="franchise-review-btn-wrap">
+            <button
+              className="franchise-review-btn"
+              onClick={() => navigate("/reviews/all")}
+            >
+              후기 더 보기
+            </button>
           </div>
         </div>
       </section>

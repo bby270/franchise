@@ -1,0 +1,151 @@
+.review-page-section {
+  width: 100%;
+  padding: 4rem 1rem;
+  background: #111;
+  box-sizing: border-box;
+}
+
+.review-page-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+.review-page-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.review-page-title::before {
+  content: "📝 ";
+}
+
+.review-subtitle {
+  text-align: center;
+  color: #aaa;
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.review-count {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 2.5rem;
+}
+
+.review-page-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.review-card {
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  padding: 1.5rem;
+  width: 280px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(184, 144, 84, 0.5);
+}
+
+.review-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.review-name {
+  font-weight: bold;
+  color: #b89054;
+  margin-bottom: 0.5rem;
+}
+
+.review-content {
+  font-size: 0.95rem;
+  color: #ddd;
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+}
+
+.stars {
+  color: #fbc02d;
+  font-size: 1.1rem;
+}
+
+.review-footer {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #1a1a1a;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+.modal-content h3 {
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background-color: #111;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.review-footer-copyright {
+  margin-top: 4rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+@media screen and (max-width: 768px) {
+  .review-card {
+    width: 100%;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+}
