@@ -1,41 +1,48 @@
-// FranchisePage.jsx
+// React 훅과 라우팅 훅 가져오기
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./FranchisePage.css";
+import "./FranchisePage.css"; // 스타일 시트
 
-import main1 from "../assets/image/main1.png";
-import main2 from "../assets/image/main2.png";
-import main3 from "../assets/image/main3.png";
-import logo from "../assets/image/간판이미지 사진.png";
-import storeImg from "../assets/image/매장소개 사진.png";
-import menu1 from "../assets/image/꽃등심.png";
-import menu2 from "../assets/image/살치살.png";
-import menu3 from "../assets/image/꽃살.png";
+// 이미지 가져오기
+import main1 from "../../assets/image/main1.png";
+import main2 from "../../assets/image/main2.png";
+import main3 from "../../assets/image/main3.png";
+import logo from "../../assets/image/간판이미지 사진.png";
+import storeImg from "../../assets/image/매장소개 사진.png";
+import menu1 from "../../assets/image/꽃등심.png";
+import menu2 from "../../assets/image/살치살.png";
+import menu3 from "../../assets/image/꽃살.png";
 
+// 메인 배경 이미지 배열
 const images = [main1, main2, main3];
 
 export default function FranchisePage() {
-  const [currentImage, setCurrentImage] = useState(0);
-  const [activeSection, setActiveSection] = useState("top");
-  const [showModal, setShowModal] = useState(false);
-  const navigate = useNavigate();
+  // 상태 정의
+  const [currentImage, setCurrentImage] = useState(0); // 현재 슬라이드 이미지
+  const [activeSection, setActiveSection] = useState("top"); // 활성화된 섹션
+  const [showModal, setShowModal] = useState(false); // 모달 표시 여부
+  const navigate = useNavigate(); // 페이지 이동 훅
 
+  // 이미지 자동 슬라이드 (5초 간격)
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
     }, 5000);
-    return () => clearInterval(interval);
+    return () => clearInterval(interval); // 클린업
   }, []);
 
+  // 스크롤 시 섹션 및 애니메이션 감지
   useEffect(() => {
     const handleScroll = () => {
       const sections = ["top", "board", "reviews", "contact", "intro", "menu"];
       for (let id of sections) {
         const el = document.getElementById(id);
         if (el && el.getBoundingClientRect().top <= window.innerHeight / 2) {
-          setActiveSection(id);
+          setActiveSection(id); // 현재 화면에 보이는 섹션 활성화
         }
       }
+
+      // 페이드 인 애니메이션 적용
       document.querySelectorAll(".fade-in").forEach((el) => {
         const top = el.getBoundingClientRect().top;
         if (top < window.innerHeight * 0.9) {
@@ -43,11 +50,13 @@ export default function FranchisePage() {
         }
       });
     };
+
     window.addEventListener("scroll", handleScroll);
-    handleScroll();
+    handleScroll(); // 초기 실행
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // 부드럽게 스크롤 이동하는 함수
   const scrollTo = (id) => {
     const target = document.getElementById(id);
     if (!target) return;
@@ -55,9 +64,10 @@ export default function FranchisePage() {
     const start = window.scrollY || window.pageYOffset;
     const end = target.getBoundingClientRect().top + start;
     const distance = end - start;
-    const duration = 800; // 원하는 부드러움 정도 (ms)
+    const duration = 800;
     let startTime = null;
 
+    // easeInOut cubic 함수
     const easeInOut = (t) =>
       t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
@@ -74,15 +84,18 @@ export default function FranchisePage() {
 
   return (
     <div className="franchise-wrapper premium-bg">
+      {/* 헤더 영역 */}
       <header className="franchise-header premium-header">
         <img src={logo} alt="로고" className="franchise-logo" />
         <nav className="franchise-nav">
+          {/* 네비게이션 메뉴 */}
           {["top", "board", "reviews", "contact", "intro", "menu"].map((id) => (
             <a
               key={id}
               onClick={() => scrollTo(id)}
               className={activeSection === id ? "active" : ""}
             >
+              {/* 한글 메뉴명 매핑 */}
               {id === "top"
                 ? "홈"
                 : id === "board"
@@ -99,6 +112,7 @@ export default function FranchisePage() {
         </nav>
       </header>
 
+      {/* 슬라이드 배경 영역 */}
       <div
         id="top"
         className="franchise-hero fade-in"
@@ -110,10 +124,12 @@ export default function FranchisePage() {
         </div>
       </div>
 
+      {/* 게시판 섹션 */}
       <section id="board" className="franchise-section fade-in">
         <div className="inner">
           <h2>📢 게시판</h2>
           <div className="franchise-board-list">
+            {/* 최근 게시글 6개 미리보기 */}
             {[
               {
                 label: "이벤트",
@@ -139,14 +155,12 @@ export default function FranchisePage() {
               {
                 label: "이벤트",
                 date: "2024.07.10",
-                title:
-                  "예비 창업주 대표님 저의 소소한우 는 대표님한테 마진없이 다 오픈해드립니다.",
+                title: "마진 없이 다 오픈해드립니다.",
               },
               {
                 label: "이벤트",
                 date: "2024.08.10",
-                title:
-                  "가게 창업시 평수는 예비 창업대표님이 원하시는 평수대로 모두 맞춰드리겠습니다.",
+                title: "평수는 대표님이 원하시는 대로!",
               },
             ].map((post, idx) => (
               <div className="franchise-board-card" key={idx}>
@@ -158,6 +172,7 @@ export default function FranchisePage() {
               </div>
             ))}
           </div>
+          {/* 게시판 전체 보기 버튼 */}
           <div className="board-more">
             <button className="premium-btn" onClick={() => navigate("/board")}>
               전체 게시글 보기
@@ -166,11 +181,12 @@ export default function FranchisePage() {
         </div>
       </section>
 
+      {/* 고객 후기 섹션 */}
       <section id="reviews" className="franchise-section fade-in">
         <div className="inner">
           <h2>고객 후기</h2>
-
           <div className="franchise-reviews">
+            {/* 후기 예시 4개 */}
             {Array(4)
               .fill(0)
               .map((_, i) => (
@@ -180,8 +196,6 @@ export default function FranchisePage() {
                 </div>
               ))}
           </div>
-
-          {/* ⬇ 후기 더 보기 버튼 */}
           <div className="franchise-review-btn-wrap">
             <button
               className="franchise-review-btn"
@@ -193,6 +207,7 @@ export default function FranchisePage() {
         </div>
       </section>
 
+      {/* 상담 문의 폼 */}
       <section id="contact" className="franchise-section gray fade-in">
         <div className="inner">
           <h2>상담 문의</h2>
@@ -200,6 +215,7 @@ export default function FranchisePage() {
             <input placeholder="성함" />
             <input placeholder="연락처" />
             <input placeholder="이메일" className="full-row" />
+            {/* 창업 유형 선택 */}
             <div className="franchise-radio-group full-row">
               <label>
                 <input type="radio" name="type" defaultChecked /> 현재 매장
@@ -212,6 +228,7 @@ export default function FranchisePage() {
             <input placeholder="창업 희망 지역" />
             <input placeholder="창업 희망 평수" />
             <textarea className="full-row" placeholder="문의 내용" />
+            {/* 제출 버튼 */}
             <div className="form-button full-row">
               <button
                 type="button"
@@ -225,6 +242,7 @@ export default function FranchisePage() {
         </div>
       </section>
 
+      {/* 문의 완료 모달 */}
       {showModal && (
         <div className="modal-backdrop" onClick={() => setShowModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -235,6 +253,7 @@ export default function FranchisePage() {
         </div>
       )}
 
+      {/* 매장 소개 섹션 */}
       <section id="intro" className="franchise-section fade-in">
         <div className="inner">
           <h2>매장 소개</h2>
@@ -245,24 +264,23 @@ export default function FranchisePage() {
                 <strong>소(笑)소(素)한(韓)우(牛)</strong>
               </p>
               <p>최고의 고기질을 자부하다</p>
-              <p>
-                남녀노소 누구나 찾을 수 있는 소고기집이 되겠다는 의미로
-                소소한우입니다
-              </p>
+              <p>남녀노소 누구나 찾을 수 있는 소고기집이 되겠다는 의미</p>
               <p>
                 영업시간
                 <br />
-                오전 10:00 ~ 오후10:00
+                오전 10:00 ~ 오후 10:00
               </p>
             </div>
           </div>
         </div>
       </section>
 
+      {/* 메뉴 소개 섹션 */}
       <section id="menu" className="franchise-section fade-in">
         <div className="inner">
           <h2>메뉴 소개</h2>
           <div className="franchise-menu">
+            {/* 메뉴 카드 */}
             {[
               { name: "꽃등심", price: 55000, img: menu1 },
               { name: "살치살", price: 85000, img: menu2 },
@@ -278,6 +296,7 @@ export default function FranchisePage() {
         </div>
       </section>
 
+      {/* 푸터 */}
       <footer className="franchise-footer fade-in">
         <h3>최고의 고기질을 자부하다</h3>
         <p>대한민국 고기 트렌드를 선도합니다.</p>

@@ -2,9 +2,9 @@ import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
-import FranchisePage from "./Components/FranchisePage.jsx";
-import BoardPage from "./Components/BoardPage.jsx";
-import ReviewListPage from "./Components/ReviewListPage.jsx";
+import FranchisePage from './Components/FranchisePage/FranchisePage';
+import BoardPage from './Components/Board/BoardPage';
+import ReviewListPage from './Components/ReviewListPage/ReviewListPage';
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -17,3 +17,4 @@ createRoot(document.getElementById("root")).render(
     </BrowserRouter>
   </StrictMode>
 );
+  
