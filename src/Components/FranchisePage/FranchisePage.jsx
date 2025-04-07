@@ -14,7 +14,7 @@ import menu2 from "../../assets/image/살치살.png";
 import menu3 from "../../assets/image/꽃살.png";
 
 // 메인 배경 이미지 배열
-const images = [main1, main2, main3];
+const images = [logo,main1, main2, main3];
 
 export default function FranchisePage() {
   // 상태 정의
@@ -158,7 +158,7 @@ export default function FranchisePage() {
                 title: "마진 없이 다 오픈해드립니다.",
               },
               {
-                label: "이벤트",
+                label: "공지",
                 date: "2024.08.10",
                 title: "평수는 대표님이 원하시는 대로!",
               },
