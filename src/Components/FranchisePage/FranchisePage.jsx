@@ -19,7 +19,9 @@ const images = [logo, main1, main2, main3];
 
 export default function FranchisePage() {
   // 이미지 슬라이드용 상태
-  const [currentImage, setCurrentImage] = useState(0);
+  // const [currentImage, setCurrentImage] = useState(0);
+  // 새롭게 카드 클릭용 상태 추가
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   // 현재 활성화된 섹션 추적 (스크롤 따라 nav 강조용)
   const [activeSection, setActiveSection] = useState("top");
@@ -90,7 +92,7 @@ export default function FranchisePage() {
   // 메인 이미지 슬라이드 4초마다 변경
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % images.length);
+      setSelectedIndex((prev) => (prev + 1) % images.length);
     }, 4000);
     return () => clearInterval(interval);
   }, []);
@@ -179,12 +181,25 @@ export default function FranchisePage() {
       <div
         id="top"
         className="franchise-hero fade-in"
-        style={{ backgroundImage: `url(${images[currentImage]})` }}
+        style={{ backgroundImage: `url(${images[selectedIndex]})` }}
       >
         <div className="franchise-hero-overlay">
           <h1 className="premium-title">최고의 고기질을 자부하다</h1>
           <p className="premium-sub">대한민국 고기 트렌드를 선도합니다.</p>
         </div>
+      </div>
+
+      <div className="thumbnail-container fade-in">
+        {images.map((img, idx) => (
+          <div
+            key={idx}
+            className={`thumbnail-card ${
+              selectedIndex === idx ? "active" : ""
+            }`}
+            onClick={() => setSelectedIndex(idx)}
+            style={{ backgroundImage: `url(${img})` }}
+          />
+        ))}
       </div>
 
       {/* 게시판 섹션 */}
@@ -312,7 +327,6 @@ export default function FranchisePage() {
           </form>
         </div>
       </section>
-      
 
       {/* 문의 완료 모달 */}
       {showModal && (
