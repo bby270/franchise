@@ -1,31 +1,35 @@
-//  게시판 페이지 (BoardPage.jsx)
-// 사용자 게시글을 조회, 추가, 검색할 수 있는 게시판 UI 구성
+// 게시판 페이지 컴포넌트
+// 게시글 조회, 추가, 검색, 빠른 상담신청 기능 포함
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./BoardPage.css"; // 게시판 스타일 시트 불러오기
+import "./BoardPage.css"; // 게시판 전용 스타일
 
 export default function BoardPage() {
+  // 게시글 상태 관리
   const [boardData, setBoardData] = useState([]);
-  const [selected, setSelected] = useState(null);
-  const [showForm, setShowForm] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [showModal, setShowModal] = useState(false);
-  const [simpleModalOpen, setSimpleModalOpen] = useState(false);
+  const [selected, setSelected] = useState(null); // 선택된 게시글 index
+  const [showForm, setShowForm] = useState(false); // 글쓰기 폼 토글
+  const [searchTerm, setSearchTerm] = useState(""); // 검색어
+  const [showModal, setShowModal] = useState(false); // 사용 안됨 (기존 모달)
+  const [simpleModalOpen, setSimpleModalOpen] = useState(false); // 빠른 상담 모달
   const [simpleName, setSimpleName] = useState("");
   const [simplePhone, setSimplePhone] = useState("");
 
+  // 오늘 날짜 반환 (글쓰기 폼 기본값용)
   const getToday = () => {
     const today = new Date();
     return today.toISOString().slice(0, 10).replace(/-/g, ".");
   };
 
+  // 새 글 작성 상태
   const [newPost, setNewPost] = useState({
     date: getToday(),
     title: "",
     content: "",
   });
 
+  // 게시글 목록 불러오기 (최초 1회 실행)
   useEffect(() => {
     axios
       .get("http://localhost:8081/api/board")
@@ -33,18 +37,20 @@ export default function BoardPage() {
       .catch((err) => console.error("게시글 불러오기 오류:", err));
   }, []);
 
+  // 게시글 등록
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:8081/api/board", newPost);
-      setBoardData([res.data, ...boardData]);
-      setNewPost({ date: getToday(), title: "", content: "" });
-      setShowForm(false);
+      setBoardData([res.data, ...boardData]); // 최신글 앞에 추가
+      setNewPost({ date: getToday(), title: "", content: "" }); // 초기화
+      setShowForm(false); // 폼 닫기
     } catch (error) {
       alert("게시글 등록 오류 발생");
     }
   };
 
+  // 빠른 상담 제출 처리
   const handleSimpleSubmit = async () => {
     if (!simpleName || !simplePhone) {
       alert("이름과 연락처를 입력해주세요.");
@@ -64,6 +70,7 @@ export default function BoardPage() {
     }
   };
 
+  //  검색어로 필터링된 게시글
   const filteredData = boardData.filter((item) =>
     item.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -71,6 +78,7 @@ export default function BoardPage() {
   return (
     <div className="boardpage-container">
       <div className="boardpage-inner">
+        {/* 상단 헤더 및 글쓰기 버튼 */}
         <div className="boardpage-header">
           <h2 className="boardpage-title">📢 게시판</h2>
           <button
@@ -86,6 +94,7 @@ export default function BoardPage() {
           </button>
         </div>
 
+        {/* 검색창 */}
         {!showForm && (
           <div className="boardpage-search-wrap">
             <input
@@ -99,6 +108,7 @@ export default function BoardPage() {
           </div>
         )}
 
+        {/* 게시글 작성 폼 */}
         {showForm && (
           <form className="boardpage-form" onSubmit={handleSubmit}>
             <input
@@ -129,6 +139,7 @@ export default function BoardPage() {
           </form>
         )}
 
+        {/* 게시글 목록 */}
         <div className="boardpage-list">
           {filteredData.map((item, idx) => (
             <div
@@ -146,10 +157,12 @@ export default function BoardPage() {
           ))}
         </div>
 
+        {/* 공지사항 */}
         <div className="boardpage-footer-info">
           📅 전체공지 : 매월 5일은 본사에서 교육진행 됩니다. 감사합니다.
         </div>
 
+        {/* 빠른 상담 CTA */}
         <div className="boardpage-cta">
           <p>상담을 신청하시면 창업 지원 혜택을 안내드립니다!</p>
           <button
@@ -160,6 +173,7 @@ export default function BoardPage() {
           </button>
         </div>
 
+        {/* 홈으로 돌아가기 */}
         <div className="boardpage-home-link">
           <button
             className="premium-btn"
@@ -169,11 +183,13 @@ export default function BoardPage() {
           </button>
         </div>
 
+        {/* 푸터 */}
         <footer className="boardpage-footer">
           ⓒ 2025 소소한우게시판. All rights reserved.
         </footer>
       </div>
 
+      {/* 빠른 상담 모달창 */}
       {simpleModalOpen && (
         <div className="modal-overlay">
           <div className="modal-box">
