@@ -22,6 +22,7 @@ export default function FranchisePage() {
   // const [currentImage, setCurrentImage] = useState(0);
   // 새롭게 카드 클릭용 상태 추가
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [autoSlide, setAutoSlide] = useState(true);
 
   // 현재 활성화된 섹션 추적 (스크롤 따라 nav 강조용)
   const [activeSection, setActiveSection] = useState("top");
@@ -48,8 +49,8 @@ export default function FranchisePage() {
   // 게시글/후기 데이터를 백엔드에서 불러오기
   useEffect(() => {
     Promise.all([
-      axios.get("http://localhost:8081/api/board"),
-      axios.get("http://localhost:8081/api/review"),
+      axios.get("http://localhost:8083/api/board"),
+      axios.get("http://localhost:8083/api/review"),
     ])
       .then(([boardRes, reviewRes]) => {
         setBoardList(boardRes.data);
@@ -65,7 +66,7 @@ export default function FranchisePage() {
       return;
     }
     try {
-      await axios.post("http://localhost:8081/api/inquiry", {
+      await axios.post("http://localhost:8083/api/inquiry", {
         name,
         phone,
         email,
@@ -95,7 +96,7 @@ export default function FranchisePage() {
       setSelectedIndex((prev) => (prev + 1) % images.length);
     }, 4000);
     return () => clearInterval(interval);
-  }, []);
+  }, [autoSlide]);
 
   // 스크롤 이벤트 핸들링 (fade-in 효과 및 메뉴 활성화)
   useEffect(() => {
@@ -188,7 +189,7 @@ export default function FranchisePage() {
           <p className="premium-sub">대한민국 고기 트렌드를 선도합니다.</p>
         </div>
       </div>
-
+      {/*클릭 시 자동 전환 멈춤*/}
       <div className="thumbnail-container fade-in">
         {images.map((img, idx) => (
           <div
@@ -196,7 +197,11 @@ export default function FranchisePage() {
             className={`thumbnail-card ${
               selectedIndex === idx ? "active" : ""
             }`}
-            onClick={() => setSelectedIndex(idx)}
+            onClick={() => {
+              setSelectedIndex(idx);
+              setAutoSlide(false);
+              setTimeout(() => setAutoSlide(true), 8000);
+            }}
             style={{ backgroundImage: `url(${img})` }}
           />
         ))}

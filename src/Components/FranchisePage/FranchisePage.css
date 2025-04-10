@@ -565,6 +565,7 @@ textarea.full-row {
   margin-top: -40px;
   position: relative;
   z-index: 2;
+  flex-wrap: wrap;
 }
 
 .thumbnail-card {

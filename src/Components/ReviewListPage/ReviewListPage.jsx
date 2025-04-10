@@ -14,7 +14,7 @@ export default function ReviewListPage() {
   // 리뷰 데이터 가져오기
   useEffect(() => {
     axios
-      .get("http://localhost:8081/api/review")
+      .get("http://localhost:8083/api/review")
       .then((res) => setReviews(res.data))
       .catch((err) => console.error("리뷰 불러오기 실패", err));
   }, []);
@@ -24,7 +24,7 @@ export default function ReviewListPage() {
     const newReview = { name: name || "익명 고객", content: review, rating };
 
     axios
-      .post("http://localhost:8081/api/review", newReview)
+      .post("http://localhost:8083/api/review", newReview)
       .then(() => {
         alert("✅ 후기 제출이 완료되었습니다!");
         setReview("");
@@ -33,7 +33,7 @@ export default function ReviewListPage() {
         setShowModal(false);
 
         // 새로 등록한 리뷰 포함되도록 다시 불러오기
-        return axios.get("http://localhost:8081/api/review");
+        return axios.get("http://localhost:8083/api/review");
       })
       .then((res) => setReviews(res.data))
       .catch(() => alert("리뷰 등록 실패"));

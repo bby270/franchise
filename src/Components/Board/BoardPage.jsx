@@ -32,7 +32,7 @@ export default function BoardPage() {
   // 게시글 목록 불러오기 (최초 1회 실행)
   useEffect(() => {
     axios
-      .get("http://localhost:8081/api/board")
+      .get("http://localhost:8083/api/board")
       .then((res) => setBoardData(res.data))
       .catch((err) => console.error("게시글 불러오기 오류:", err));
   }, []);
@@ -41,7 +41,7 @@ export default function BoardPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8081/api/board", newPost);
+      const res = await axios.post("http://localhost:8083/api/board", newPost);
       setBoardData([res.data, ...boardData]); // 최신글 앞에 추가
       setNewPost({ date: getToday(), title: "", content: "" }); // 초기화
       setShowForm(false); // 폼 닫기
@@ -57,7 +57,7 @@ export default function BoardPage() {
       return;
     }
     try {
-      await axios.post("http://localhost:8081/api/inquiry/simple", {
+      await axios.post("http://localhost:8083/api/inquiry/simple", {
         name: simpleName,
         phone: simplePhone,
       });
