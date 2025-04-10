@@ -15,7 +15,7 @@ import menu2 from "../../assets/image/살치살.png";
 import menu3 from "../../assets/image/꽃살.png";
 
 // 메인 배경 이미지 배열
-const images = [logo, main1, main2, main3];
+const images = [logo, main1, main2, main3,storeImg];
 
 export default function FranchisePage() {
   // 이미지 슬라이드용 상태
