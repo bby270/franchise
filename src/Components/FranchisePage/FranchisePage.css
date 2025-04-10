@@ -510,3 +510,39 @@ textarea.full-row {
   width: 100%;
 }
 
+/* 기본 내비게이션 스타일 */
+.franchise-nav a {
+  color: white;
+  padding: 0.75rem 1.2rem;
+  margin: 0 0.3rem;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* 마우스 오버 시 */
+.franchise-nav a:hover {
+  color: #ffd700;
+}
+
+/* 활성화된 메뉴 스타일 */
+.franchise-nav a.active {
+  color: #ffd700;
+  font-weight: 600;
+}
+
+/* 활성화 항목 아래 선 애니메이션 */
+.franchise-nav a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 20%;
+  width: 60%;
+  height: 2px;
+  background-color: #ffd700;
+  border-radius: 1px;
+  transition: all 0.3s ease-in-out;
+}
+
