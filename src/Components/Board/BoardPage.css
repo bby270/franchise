@@ -266,7 +266,6 @@
   text-align: center;
   color: #fff;
   max-width: 360px;
-  width: 90%;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
@@ -285,11 +284,25 @@
   background-color: #b89054;
   color: white;
   border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
   cursor: pointer;
   font-weight: bold;
+  margin: 10px 8px;
 }
+
+.modal-box input {
+  width: 280px;
+  padding: 0.70rem 1.9rem;
+  margin: 0.5rem;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background-color: #2a2a2a;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+
 .boardpage-home-link {
   margin-top: 2rem;
   text-align: center;
@@ -317,3 +330,5 @@
     font-size: 1rem;
   }
 }
+
+
