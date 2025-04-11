@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/board")
-@CrossOrigin(origins = "*")
+
 public class BoardController {
 
     private final BoardRepository repo;
@@ -30,4 +30,15 @@ public class BoardController {
         List<Board> boards = repo.findAll();
         return ResponseEntity.ok(boards); // 상태 200 OK와 함께 전체 리스트 반환
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteBoard(@PathVariable Long id) {
+        if (!repo.existsById(id)) {
+            return ResponseEntity.notFound().build(); // 없으면 404
+        }
+
+        repo.deleteById(id); //
+        return ResponseEntity.noContent().build(); // 성공 시 204
+    }
+
 }

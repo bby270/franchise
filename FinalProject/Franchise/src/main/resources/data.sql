@@ -1,3 +1,8 @@
+-- Admin 관리자
+INSERT INTO admin (id, username, password, created_at)
+VALUES (1, 'admin', '$2a$10$FQ7cCqzAoD6ZBvHjG7cl1uM21xBTNEymU9dBcl/PMbG0QFnkZkK2W', '2025-04-11');
+
+
 -- 게시판
 INSERT INTO board (title, content, date) VALUES ('가맹점 창업 설명회', '창업 설명회가 4월 15일에 열립니다.', '2025-04-01');
 INSERT INTO board (title, content, date) VALUES ('신규 매장 오픈', '서울 강남점 오픈했습니다!', '2025-04-02');

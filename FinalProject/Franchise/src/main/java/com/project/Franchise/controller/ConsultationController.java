@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/inquiry")
-@CrossOrigin(origins = "*")
+@RequestMapping("/api/consultation")
 public class ConsultationController {
 
     private final ConsultationRepository repository;
@@ -37,5 +36,14 @@ public class ConsultationController {
     public ResponseEntity<List<ConsultationInquiries>> getAllInquiries() {
         List<ConsultationInquiries> inquiries = repository.findAll();
         return ResponseEntity.ok(inquiries);
+    }
+    @DeleteMapping("/simple/{id}")
+    public ResponseEntity<Void> deleteSimpleInquiry(@PathVariable Long id) {
+        if (!repository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+
+        repository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

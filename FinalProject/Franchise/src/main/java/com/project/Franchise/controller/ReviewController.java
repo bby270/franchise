@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/review")
-@CrossOrigin(origins = "*")
+
 public class ReviewController {
 
     private final ReviewRepository repo;
@@ -29,5 +29,15 @@ public class ReviewController {
     public ResponseEntity<List<CustomerReview>> getAll() {
         List<CustomerReview> reviews = repo.findAll();
         return ResponseEntity.ok(reviews); // 상태 200 OK와 함께 리뷰 리스트 반환
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteReview(@PathVariable Long id) {
+        if (!repo.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+
+        repo.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
