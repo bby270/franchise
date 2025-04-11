@@ -5,7 +5,8 @@ import "./index.css";
 import FranchisePage from './Components/FranchisePage/FranchisePage';
 import BoardPage from './Components/Board/BoardPage';
 import ReviewListPage from './Components/ReviewListPage/ReviewListPage';
-
+import AdminLogin from "./Components/admin/adminlogin";
+import AdminPage from "./Components/admin/adminpage";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
@@ -13,6 +14,8 @@ createRoot(document.getElementById("root")).render(
         <Route path="/" element={<FranchisePage />} />
         <Route path="/board" element={<BoardPage />} />
         <Route path="/reviews/all" element={<ReviewListPage />} />
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/adminlogin" element={<AdminLogin />} /> 
       </Routes>
     </BrowserRouter>
   </StrictMode>

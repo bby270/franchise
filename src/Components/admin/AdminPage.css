@@ -1,0 +1,126 @@
+/* === 공통 세팅 === */
+body {
+    background-color: #121212;
+    color: #f0f0f0;
+    font-family: 'Pretendard', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .admin-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 20px;
+  }
+  
+  /* 제목 */
+  h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 24px;
+    color: #f0f0f0;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #f0f0f0;
+  }
+  
+  /* 버튼 */
+  button {
+    background-color: #2a2a2a;
+    color: #fff;
+    border: 1px solid #444;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #444;
+  }
+  
+  /* 구분선 */
+  hr {
+    border: none;
+    height: 1px;
+    background: #444;
+    margin: 32px 0;
+  }
+  
+  /* === 게시판, 리뷰, 문의 항목 공통 박스 === */
+  .admin-box {
+    background-color: #4b4949;
+    color: #f0f0f0;
+    padding: 12px 16px;
+    border-radius: 6px;
+    border: 1px solid #242323;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .admin-box:hover {
+    background-color: #5e5c5c;
+  }
+  
+  /* 박스 내부 버튼 */
+  .admin-box button {
+    background-color: #111;
+    color: #1a1818;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .admin-box button:hover {
+    background-color: #302e2e;
+  }
+  
+  /* 박스 내부 텍스트 정리 */
+  .admin-box strong {
+    color: #111;
+    font-weight: bold;
+  }
+  
+  .admin-box p {
+    color: #f0f0f0;
+    margin-top: 6px;
+  }
+  .admin-content-box {
+    background-color: #f9f9f9;
+    color: #111;
+    padding: 12px 16px;
+    margin: -8px 0 16px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .admin-box button {
+  background-color: #2b2b2c;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.admin-box button:hover {
+  background-color: #2563eb;
+}
+
+/* 제목 등 */
+.admin-page h1, .admin-page h2 {
+  color: #ffffff;
+}
+  

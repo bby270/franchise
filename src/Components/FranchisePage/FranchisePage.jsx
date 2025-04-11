@@ -337,7 +337,7 @@ export default function FranchisePage() {
       {showModal && (
         <div className="modal-backdrop" onClick={() => setShowModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h3>문의 완료</h3>
+            <h3>문의 완료</h3>  
             <p>곧 담당자가 연락드릴 예정입니다. 감사합니다!</p>
             <button onClick={() => setShowModal(false)}>닫기</button>
           </div>

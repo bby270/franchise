@@ -40,6 +40,13 @@ export default function BoardPage() {
   // 게시글 등록
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const {title,content} = newPost;
+
+    if(!title.trim() || !content.trim()) {
+      alert("모든 내용을 작성해주세요.");
+      return;
+    }
     try {
       const res = await axios.post("http://localhost:8083/api/board", newPost);
       setBoardData([res.data, ...boardData]); // 최신글 앞에 추가
@@ -125,7 +132,6 @@ export default function BoardPage() {
               onChange={(e) =>
                 setNewPost({ ...newPost, title: e.target.value })
               }
-              required
             />
             <textarea
               placeholder="내용"
@@ -133,7 +139,6 @@ export default function BoardPage() {
               onChange={(e) =>
                 setNewPost({ ...newPost, content: e.target.value })
               }
-              required
             />
             <button type="submit">추가하기</button>
           </form>
