@@ -64,7 +64,7 @@ export default function BoardPage() {
       return;
     }
     try {
-      await axios.post("http://localhost:8083/api/inquiry/simple", {
+      await axios.post("http://localhost:8083/api/consultation/simple",{
         name: simpleName,
         phone: simplePhone,
       });

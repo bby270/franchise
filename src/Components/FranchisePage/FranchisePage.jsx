@@ -66,7 +66,7 @@ export default function FranchisePage() {
       return;
     }
     try {
-      await axios.post("http://localhost:8083/api/inquiry", {
+      await axios.post("http://localhost:8083/api/consultation", {
         name,
         phone,
         email,
