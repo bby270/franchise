@@ -46,4 +46,12 @@ public class ConsultationController {
         repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    // 간단문의 목록 조회 (프론트 요청 대응용)
+    @GetMapping("/simple")
+    public ResponseEntity<List<ConsultationInquiries>> getSimpleInquiries() {
+        List<ConsultationInquiries> inquiries = repository.findAll(); // 조건 없을 경우 전체 조회
+        return ResponseEntity.ok(inquiries);
+    }
+
 }
