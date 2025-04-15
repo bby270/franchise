@@ -13,9 +13,13 @@ import storeImg from "../../assets/image/매장소개 사진.png";
 import menu1 from "../../assets/image/꽃등심.png";
 import menu2 from "../../assets/image/살치살.png";
 import menu3 from "../../assets/image/꽃살.png";
+import menu4 from "../../assets/image/계란찜.png";
+import menu5 from "../../assets/image/김치찌게.png";
+import menu6 from "../../assets/image/된장찌게.png";
+import menu7 from "../../assets/image/뚝배기라면.png";
 
 // 메인 배경 이미지 배열
-const images = [logo, main1, main2, main3,storeImg];
+const images = [logo, main1, main2, main3, storeImg];
 
 export default function FranchisePage() {
   // 이미지 슬라이드용 상태
@@ -337,7 +341,7 @@ export default function FranchisePage() {
       {showModal && (
         <div className="modal-backdrop" onClick={() => setShowModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h3>문의 완료</h3>  
+            <h3>문의 완료</h3>
             <p>곧 담당자가 연락드릴 예정입니다. 감사합니다!</p>
             <button onClick={() => setShowModal(false)}>닫기</button>
           </div>
@@ -376,6 +380,26 @@ export default function FranchisePage() {
               { name: "꽃등심", price: 55000, img: menu1 },
               { name: "살치살", price: 85000, img: menu2 },
               { name: "꽃살", price: 75000, img: menu3 },
+            ].map((item, idx) => (
+              <div className="franchise-menu-item premium-card" key={idx}>
+                <img src={item.img} alt={item.name} />
+                <p>{item.name}</p>
+                <p>{item.price.toLocaleString()} 원</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* 사이드 메뉴 소개  */}
+      <section id="side-menu" className="franchise-section fade-in">
+        <div className="inner">
+          <h2>사이드 메뉴 소개</h2>
+          <div className="franchise-menu">
+            {[
+              { name: "뚝배기라면", price: 5000, img: menu7 },
+              { name: "계란찜", price: 4000, img: menu4 },
+              { name: "김치찌게", price: 7000, img: menu5 },
+              { name: "된장찌게", price: 7000, img: menu6 },
             ].map((item, idx) => (
               <div className="franchise-menu-item premium-card" key={idx}>
                 <img src={item.img} alt={item.name} />
