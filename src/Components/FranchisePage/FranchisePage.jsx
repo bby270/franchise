@@ -17,16 +17,18 @@ import menu4 from "../../assets/image/계란찜.png";
 import menu5 from "../../assets/image/김치찌게.png";
 import menu6 from "../../assets/image/된장찌게.png";
 import menu7 from "../../assets/image/뚝배기라면.png";
+import main4 from "../../assets/image/promo-video.mp4";
 
 // 메인 배경 이미지 배열
 const images = [logo, main1, main2, main3, storeImg];
 
 export default function FranchisePage() {
   // 이미지 슬라이드용 상태
-  // const [currentImage, setCurrentImage] = useState(0);
   // 새롭게 카드 클릭용 상태 추가
+  // 팝업창
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [autoSlide, setAutoSlide] = useState(true);
+  const [showVideoPopup, setShowVideoPopup] = useState(false);
 
   // 현재 활성화된 섹션 추적 (스크롤 따라 nav 강조용)
   const [activeSection, setActiveSection] = useState("top");
@@ -209,6 +211,17 @@ export default function FranchisePage() {
             style={{ backgroundImage: `url(${img})` }}
           />
         ))}
+      </div>
+      {/* ✅ 영상 팝업 열기 버튼 */}
+      <div className="video-popup-button-container fade-in">
+        <button
+          className="video-open-btn"
+          onClick={() => {
+            setShowVideoPopup(true);
+          }}
+        >
+          📺 홍보 영상 보기
+        </button>
       </div>
 
       {/* 게시판 섹션 */}
@@ -410,6 +423,27 @@ export default function FranchisePage() {
           </div>
         </div>
       </section>
+
+      {/* 🔴 홍보 영상 팝업 */}
+      {showVideoPopup && (
+        <div
+          className="video-popup-backdrop"
+          onClick={() => setShowVideoPopup(false)} // 바깥 눌러도 닫힘
+        >
+          <div
+            className="video-popup-content"
+            onClick={(e) => e.stopPropagation()} // 내부 클릭 시 닫힘 방지
+          >
+            <video src={main4} controls autoPlay className="video-element" />
+            <button
+              className="video-close-btn"
+              onClick={() => setShowVideoPopup(false)} // ✅ 닫기 기능!
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* 푸터 */}
       <footer className="franchise-footer fade-in">
