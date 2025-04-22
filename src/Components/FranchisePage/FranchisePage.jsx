@@ -8,6 +8,7 @@ import "./FranchisePage.css"; // 페이지 스타일
 import main1 from "../../assets/image/main1.png";
 import main2 from "../../assets/image/main2.png";
 import main3 from "../../assets/image/main3.png";
+import main4 from "../../assets/image/promo-video.mp4";
 import logo from "../../assets/image/간판이미지 사진.png";
 import storeImg from "../../assets/image/매장소개 사진.png";
 import menu1 from "../../assets/image/꽃등심.png";
@@ -15,9 +16,8 @@ import menu2 from "../../assets/image/살치살.png";
 import menu3 from "../../assets/image/꽃살.png";
 import menu4 from "../../assets/image/계란찜.png";
 import menu5 from "../../assets/image/김치찌게.png";
-import menu6 from "../../assets/image/된장찌게.png";
+import menu6 from "../../assets/image/된장찌게.png";  
 import menu7 from "../../assets/image/뚝배기라면.png";
-import main4 from "../../assets/image/promo-video.mp4";
 
 // 메인 배경 이미지 배열
 const images = [logo, main1, main2, main3, storeImg];
@@ -402,26 +402,26 @@ export default function FranchisePage() {
             ))}
           </div>
         </div>
-      </section>
-      {/* 사이드 메뉴 소개  */}
-      <section id="side-menu" className="franchise-section fade-in">
-        <div className="inner">
-          <h2>사이드 메뉴 소개</h2>
-          <div className="franchise-menu">
-            {[
-              { name: "뚝배기라면", price: 5000, img: menu7 },
-              { name: "계란찜", price: 4000, img: menu4 },
-              { name: "김치찌게", price: 7000, img: menu5 },
-              { name: "된장찌게", price: 7000, img: menu6 },
-            ].map((item, idx) => (
-              <div className="franchise-menu-item premium-card" key={idx}>
-                <img src={item.img} alt={item.name} />
-                <p>{item.name}</p>
-                <p>{item.price.toLocaleString()} 원</p>
-              </div>
-            ))}
+        {/* 사이드 메뉴 소개  */}
+        <section id="side-menu" className="franchise-section fade-in">
+          <div className="inner">
+            <h2>사이드 메뉴 소개</h2>
+            <div className="franchise-menu">
+              {[
+                { name: "뚝배기라면", price: 5000, img: menu7 },
+                { name: "계란찜", price: 4000, img: menu4 },
+                { name: "김치찌게", price: 7000, img: menu5 },
+                { name: "된장찌게", price: 7000, img: menu6 },
+              ].map((item, idx) => (
+                <div className="franchise-menu-item premium-card" key={idx}>
+                  <img src={item.img} alt={item.name} />
+                  <p>{item.name}</p>
+                  <p>{item.price.toLocaleString()} 원</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        </section>
       </section>
 
       {/* 🔴 홍보 영상 팝업 */}
