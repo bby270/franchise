@@ -51,7 +51,20 @@ export default function FranchisePage() {
   // 게시판 및 후기 목록 상태
   const [boardList, setBoardList] = useState([]);
   const [reviewList, setReviewList] = useState([]);
+  //메뉴소개 모달창
+  const [selectedMenu, setSelectedMenu] = useState(null);
+  const mainMenus = [
+    { name: "꽃등심", price: 55000, img: menu1 },
+    { name: "살치살", price: 85000, img: menu2 },
+    { name: "꽃살", price: 75000, img: menu3 },
+  ];
 
+  const sideMenus = [
+    { name: "뚝배기라면", price: 5000, img: menu7 },
+    { name: "계란찜", price: 4000, img: menu4 },
+    { name: "김치찌게", price: 7000, img: menu5 },
+    { name: "된장찌게", price: 7000, img: menu6 },
+  ];
   // 게시글/후기 데이터를 백엔드에서 불러오기
   useEffect(() => {
     Promise.all([
@@ -383,18 +396,17 @@ export default function FranchisePage() {
         </div>
       </section>
 
-      {/* 메뉴 소개 */}
-      <section id="menu" className="franchise-section fade-in">
+        {/* 메뉴 소개 */}
+        <section id="menu" className="franchise-section fade-in">
         <div className="inner">
           <h2>메뉴 소개</h2>
           <div className="franchise-menu">
-            {/* 메뉴 항목 반복 렌더링 */}
-            {[
-              { name: "꽃등심", price: 55000, img: menu1 },
-              { name: "살치살", price: 85000, img: menu2 },
-              { name: "꽃살", price: 75000, img: menu3 },
-            ].map((item, idx) => (
-              <div className="franchise-menu-item premium-card" key={idx}>
+            {mainMenus.map((item, idx) => (
+              <div
+                className="franchise-menu-item premium-card"
+                key={idx}
+                onClick={() => setSelectedMenu(item)}
+              >
                 <img src={item.img} alt={item.name} />
                 <p>{item.name}</p>
                 <p>{item.price.toLocaleString()} 원</p>
@@ -402,18 +414,18 @@ export default function FranchisePage() {
             ))}
           </div>
         </div>
-        {/* 사이드 메뉴 소개  */}
+
+        {/* 사이드 메뉴 소개 */}
         <section id="side-menu" className="franchise-section fade-in">
           <div className="inner">
             <h2>사이드 메뉴 소개</h2>
             <div className="franchise-menu">
-              {[
-                { name: "뚝배기라면", price: 5000, img: menu7 },
-                { name: "계란찜", price: 4000, img: menu4 },
-                { name: "김치찌게", price: 7000, img: menu5 },
-                { name: "된장찌게", price: 7000, img: menu6 },
-              ].map((item, idx) => (
-                <div className="franchise-menu-item premium-card" key={idx}>
+              {sideMenus.map((item, idx) => (
+                <div
+                  className="franchise-menu-item premium-card"
+                  key={idx}
+                  onClick={() => setSelectedMenu(item)}
+                >
                   <img src={item.img} alt={item.name} />
                   <p>{item.name}</p>
                   <p>{item.price.toLocaleString()} 원</p>
@@ -423,6 +435,33 @@ export default function FranchisePage() {
           </div>
         </section>
       </section>
+
+      {/* 모달창 */}
+      {selectedMenu && (
+        <div className="modal-overlay" onClick={() => setSelectedMenu(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h2>{selectedMenu.name}</h2>
+            <img
+              src={selectedMenu.img}
+              alt={selectedMenu.name}
+              style={{ width: "100%", borderRadius: "10px" }}
+            />
+            <p style={{ marginTop: "1rem", fontWeight: "bold" }}>
+              {selectedMenu.price.toLocaleString()} 원
+            </p>
+            <p style={{ marginTop: "0.5rem" }}>
+            
+            </p>
+            <button
+              style={{ marginTop: "1rem" }}
+              onClick={() => setSelectedMenu(null)}
+            >
+              닫기
+            </button>
+          </div>
+        </div>
+      )}
+  
 
       {/* 🔴 홍보 영상 팝업 */}
       {showVideoPopup && (

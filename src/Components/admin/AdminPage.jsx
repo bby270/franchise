@@ -10,6 +10,9 @@ export default function AdminPage() {
   const [reviewList, setReviewList] = useState([]);
   const [inquiryList, setInquiryList] = useState([]);
   const [expandedId, setExpandedId] = useState(null);
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [newPostTitle, setNewPostTitle] = useState("");
+  const [newPostContent, setNewPostContent] = useState("");
 
   useEffect(() => {
     const isAdmin = sessionStorage.getItem("isAdmin");
@@ -87,7 +90,9 @@ export default function AdminPage() {
       <div style={{ marginBottom: "1rem" }}>
         <button onClick={() => setActiveTab("board")}>📝 게시판 관리</button>
         <button onClick={() => setActiveTab("review")}>⭐ 고객리뷰 관리</button>
-        <button onClick={() => setActiveTab("inquiry")}>📞 상담문의 확인</button>
+        <button onClick={() => setActiveTab("inquiry")}>
+          📞 상담문의 확인
+        </button>
       </div>
 
       {/* 게시판 관리 */}
@@ -113,9 +118,7 @@ export default function AdminPage() {
                 </button>
               </div>
               {expandedId === post.id && (
-                <div className="admin-content-box">
-                  {post.content}
-                </div>
+                <div className="admin-content-box">{post.content}</div>
               )}
             </div>
           ))}
@@ -142,26 +145,42 @@ export default function AdminPage() {
 
       {/* 상담문의 확인 */}
       {activeTab === "inquiry" && (
-  <div>
-    <h2>📞 상담문의 확인</h2>
-    {inquiryList.map((inq) => (
-      <div key={inq.id} className="admin-box">
         <div>
-          <p><strong>이름:</strong> {inq.name}</p>
-          <p><strong>연락처:</strong> {inq.phone}</p>
-          <p><strong>이메일:</strong> {inq.email}</p>
-          <p><strong>문의 유형:</strong> {inq.type}</p>
-          <p><strong>희망 지역:</strong> {inq.region}</p>
-          <p><strong>희망 평수:</strong> {inq.size}</p>
-          <p><strong>메시지:</strong><br />{inq.message}</p>
+          <h2>📞 상담문의 확인</h2>
+          {inquiryList.map((inq) => (
+            <div key={inq.id} className="admin-box">
+              <div>
+                <p>
+                  <strong>이름:</strong> {inq.name}
+                </p>
+                <p>
+                  <strong>연락처:</strong> {inq.phone}
+                </p>
+                <p>
+                  <strong>이메일:</strong> {inq.email}
+                </p>
+                <p>
+                  <strong>문의 유형:</strong> {inq.type}
+                </p>
+                <p>
+                  <strong>희망 지역:</strong> {inq.region}
+                </p>
+                <p>
+                  <strong>희망 평수:</strong> {inq.size}
+                </p>
+                <p>
+                  <strong>메시지:</strong>
+                  <br />
+                  {inq.message}
+                </p>
+              </div>
+              <button onClick={() => handleDelete(inq.id, "inquiry")}>
+                삭제
+              </button>
+            </div>
+          ))}
         </div>
-        <button onClick={() => handleDelete(inq.id, "inquiry")}>
-          삭제
-        </button>
-      </div>
-    ))}
-  </div>
-)}
+      )}
 
       <hr style={{ margin: "2rem 0" }} />
       <button onClick={handleLogout}>로그아웃</button>
