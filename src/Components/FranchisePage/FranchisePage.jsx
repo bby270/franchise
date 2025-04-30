@@ -16,7 +16,7 @@ import menu2 from "../../assets/image/살치살.png";
 import menu3 from "../../assets/image/꽃살.png";
 import menu4 from "../../assets/image/계란찜.png";
 import menu5 from "../../assets/image/김치찌게.png";
-import menu6 from "../../assets/image/된장찌게.png";  
+import menu6 from "../../assets/image/된장찌게.png";
 import menu7 from "../../assets/image/뚝배기라면.png";
 
 // 메인 배경 이미지 배열
@@ -54,36 +54,58 @@ export default function FranchisePage() {
   //메뉴소개 모달창
   const [selectedMenu, setSelectedMenu] = useState(null);
   const mainMenus = [
-    { 
-      name: "꽃등심", 
-      price: 55000, 
-      img: menu1, 
-      description: "풍부한 육즙과 고소한 맛을 자랑하는 최고의 부위, 꽃등심." 
+    {
+      name: "꽃등심",
+      price: 55000,
+      img: menu1,
+      description: "풍부한 육즙과 고소한 맛을 자랑하는 최고의 부위, 꽃등심.",
     },
-    { 
-      name: "살치살", 
-      price: 85000, 
-      img: menu2, 
-      description: "부드러운 육질과 고소한 풍미를 자랑하는 프리미엄 부위, 살치살." 
+    {
+      name: "살치살",
+      price: 85000,
+      img: menu2,
+      description:
+        "부드러운 육질과 고소한 풍미를 자랑하는 프리미엄 부위, 살치살.",
     },
-    { 
-      name: "꽃살", 
-      price: 75000, 
-      img: menu3, 
-      description: "부드러움과 쫄깃함을 동시에 즐길 수 있는 고급 부위, 꽃살." 
-    }
+    {
+      name: "꽃살",
+      price: 75000,
+      img: menu3,
+      description: "부드러움과 쫄깃함을 동시에 즐길 수 있는 고급 부위, 꽃살.",
+    },
   ];
-  
+
   const sideMenus = [
-    { name: "뚝배기라면", price: 5000, img: menu7, description: "국물 맛이 일품인 뚝배기 라면." },
-    { name: "계란찜", price: 4000, img: menu4, description: "폭신하고 부드러운 맛의 계란찜." },
-    { name: "김치찌개", price: 7000, img: menu5, description: "얼큰하고 진한 맛을 자랑하는 김치찌개." },
-    { name: "된장찌개", price: 7000, img: menu6, description: "구수한 맛이 매력적인 전통 된장찌개." }
+    {
+      name: "뚝배기라면",
+      price: 5000,
+      img: menu7,
+      description: "국물 맛이 일품인 뚝배기 라면.",
+    },
+    {
+      name: "계란찜",
+      price: 4000,
+      img: menu4,
+      description: "폭신하고 부드러운 맛의 계란찜.",
+    },
+    {
+      name: "김치찌개",
+      price: 7000,
+      img: menu5,
+      description: "얼큰하고 진한 맛을 자랑하는 김치찌개.",
+    },
+    {
+      name: "된장찌개",
+      price: 7000,
+      img: menu6,
+      description: "구수한 맛이 매력적인 전통 된장찌개.",
+    },
   ];
-  
+
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  
+  const validateEmail = (email) => /\S+@\S+\.\S+/.test(email);
+  const validatePhone = (phone) => /^[0-9]{10,11}$/.test(phone);
 
   // 게시글/후기 데이터를 백엔드에서 불러오기
   useEffect(() => {
@@ -104,6 +126,16 @@ export default function FranchisePage() {
       alert("모든 항목을 입력해주세요.");
       return;
     }
+    if (!validateEmail(email)) {
+      alert("유효한 이메일 형식을 입력해주세요.");
+      return;
+    }
+
+    if (!validatePhone(phone)) {
+      alert("올바른 연락처(숫자만 입력) 형식을 입력해주세요.");
+      return;
+    }
+
     try {
       await axios.post("http://localhost:8083/api/consultation", {
         name,
@@ -141,25 +173,25 @@ export default function FranchisePage() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ["top", "board", "reviews", "contact", "intro", "menu"];
-  
+
       for (let id of sections) {
         const el = document.getElementById(id);
         if (el && el.getBoundingClientRect().top <= window.innerHeight / 2) {
           setActiveSection(id);
         }
       }
-  
+
       // 🔥 (추가) 스크롤 방향 감지해서 헤더 숨기기
       const currentScrollY = window.scrollY;
-  
+
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setShowHeader(false); // 아래로 내리면 헤더 숨김
       } else {
         setShowHeader(true); // 위로 올리면 헤더 다시 보여줌
       }
-  
+
       setLastScrollY(currentScrollY);
-  
+
       // (기존) fade-in 효과
       document.querySelectorAll(".fade-in").forEach((el) => {
         const top = el.getBoundingClientRect().top;
@@ -168,27 +200,26 @@ export default function FranchisePage() {
         }
       });
     };
-  
+
     window.addEventListener("scroll", handleScroll);
     handleScroll(); // 초기 실행
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
-  
 
   // 부드러운 스크롤 함수 (네비게이션 클릭 시 사용)
   const scrollTo = (id) => {
     const target = document.getElementById(id);
     if (!target) return;
-
+  
     const start = window.scrollY || window.pageYOffset;
     const end = target.getBoundingClientRect().top + start;
     const distance = end - start;
     const duration = 800;
     let startTime = null;
-
+  
     const easeInOut = (t) =>
       t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
+  
     const animateScroll = (timestamp) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
@@ -196,9 +227,10 @@ export default function FranchisePage() {
       window.scrollTo(0, start + distance * eased);
       if (progress < 1) requestAnimationFrame(animateScroll);
     };
-
+  
     requestAnimationFrame(animateScroll);
   };
+  
 
   return (
     <div className="franchise-wrapper premium-bg">
@@ -428,8 +460,8 @@ export default function FranchisePage() {
         </div>
       </section>
 
-        {/* 메뉴 소개 */}
-        <section id="menu" className="franchise-section fade-in">
+      {/* 메뉴 소개 */}
+      <section id="menu" className="franchise-section fade-in">
         <div className="inner">
           <h2>메뉴 소개</h2>
           <div className="franchise-menu">
@@ -470,32 +502,28 @@ export default function FranchisePage() {
 
       {/* 모달창 */}
       {selectedMenu && (
-  <div className="modal-overlay" onClick={() => setSelectedMenu(null)}>
-    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-      <h2>{selectedMenu.name}</h2>
-      <img
-        src={selectedMenu.img}
-        alt={selectedMenu.name}
-        style={{ width: "100%", borderRadius: "10px" }}
-      />
-      <p style={{ marginTop: "1rem", fontWeight: "bold" }}>
-        {selectedMenu.price.toLocaleString()} 원
-      </p>
-      {/* ✨ 여기 설명 추가 */}
-      <p style={{ marginTop: "0.5rem" }}>
-        {selectedMenu.description}
-      </p>
-      <button
-        style={{ marginTop: "1rem" }}
-        onClick={() => setSelectedMenu(null)}
-      >
-        닫기
-      </button>
-    </div>
-  </div>
-)}
-
-  
+        <div className="modal-overlay" onClick={() => setSelectedMenu(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h2>{selectedMenu.name}</h2>
+            <img
+              src={selectedMenu.img}
+              alt={selectedMenu.name}
+              style={{ width: "100%", borderRadius: "10px" }}
+            />
+            <p style={{ marginTop: "1rem", fontWeight: "bold" }}>
+              {selectedMenu.price.toLocaleString()} 원
+            </p>
+            {/* ✨ 여기 설명 추가 */}
+            <p style={{ marginTop: "0.5rem" }}>{selectedMenu.description}</p>
+            <button
+              style={{ marginTop: "1rem" }}
+              onClick={() => setSelectedMenu(null)}
+            >
+              닫기
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* 🔴 홍보 영상 팝업 */}
       {showVideoPopup && (
