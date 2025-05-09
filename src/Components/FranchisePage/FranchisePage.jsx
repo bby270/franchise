@@ -110,8 +110,8 @@ export default function FranchisePage() {
   // 게시글/후기 데이터를 백엔드에서 불러오기
   useEffect(() => {
     Promise.all([
-      axios.get("http://localhost:8083/api/board"),
-      axios.get("http://localhost:8083/api/review"),
+      axios.get("/api/board"),
+      axios.get("/api/review"),
     ])
       .then(([boardRes, reviewRes]) => {
         setBoardList(boardRes.data);
@@ -137,7 +137,7 @@ export default function FranchisePage() {
     }
 
     try {
-      await axios.post("http://localhost:8083/api/consultation", {
+      await axios.post("/api/consultation", {
         name,
         phone,
         email,

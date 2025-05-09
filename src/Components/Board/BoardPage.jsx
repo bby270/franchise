@@ -32,7 +32,7 @@ export default function BoardPage() {
   // 게시글 목록 불러오기 (최초 1회 실행)
   useEffect(() => {
     axios
-      .get("http://localhost:8083/api/board")
+      .get("/api/board")
       .then((res) => setBoardData(res.data))
       .catch((err) => console.error("게시글 불러오기 오류:", err));
   }, []);

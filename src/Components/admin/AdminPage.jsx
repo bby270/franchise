@@ -28,7 +28,7 @@ export default function AdminPage() {
 
   const fetchBoardData = async () => {
     try {
-      const res = await axios.get("http://localhost:8083/api/board");
+      const res = await axios.get("/api/board");
       setBoardList(res.data);
     } catch (err) {
       console.error("게시판 데이터 로딩 실패", err);
@@ -37,7 +37,7 @@ export default function AdminPage() {
 
   const fetchReviewData = async () => {
     try {
-      const res = await axios.get("http://localhost:8083/api/review");
+      const res = await axios.get("/api/review");
       setReviewList(res.data);
     } catch (err) {
       console.error("리뷰 데이터 로딩 실패", err);
@@ -46,7 +46,7 @@ export default function AdminPage() {
 
   const fetchInquiryData = async () => {
     try {
-      const res = await axios.get("http://localhost:8083/api/consultation");
+      const res = await axios.get("/api/consultation");
       setInquiryList(res.data);
     } catch (err) {
       console.error("문의 데이터 로딩 실패", err);
@@ -57,9 +57,9 @@ export default function AdminPage() {
     if (!window.confirm("정말 삭제하시겠습니까?")) return;
 
     const urlMap = {
-      board: `http://localhost:8083/api/board/${id}`,
-      review: `http://localhost:8083/api/review/${id}`,
-      inquiry: `http://localhost:8083/api/consultation/simple/${id}`,
+      board: `/api/board/${id}`,
+      review: `/api/review/${id}`,
+      inquiry: `/api/consultation/simple/${id}`,
     };
 
     try {
